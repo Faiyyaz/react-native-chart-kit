@@ -32,6 +32,7 @@ export interface AbstractChartConfig extends ChartConfig {
   formatXLabel?: (xLabel: string) => string;
   verticalLabelsHeightPercentage?: number;
   formatTopBarValue?: (topBarValue: number) => string | number;
+  yAxisPosition?: 'left' | 'right';
 }
 
 export type AbstractChartState = {};
@@ -140,7 +141,7 @@ class AbstractChart<
       height,
       paddingTop,
       paddingRight,
-      verticalLabelsHeightPercentage = DEFAULT_X_LABELS_HEIGHT_PERCENTAGE
+      verticalLabelsHeightPercentage = DEFAULT_X_LABELS_HEIGHT_PERCENTAGE,
     } = config;
     const basePosition = height * verticalLabelsHeightPercentage;
 
@@ -191,7 +192,9 @@ class AbstractChart<
       horizontalLabelRotation = 0,
       decimalPlaces = 2,
       formatYLabel = (yLabel: string) => yLabel,
-      verticalLabelsHeightPercentage = DEFAULT_X_LABELS_HEIGHT_PERCENTAGE
+      verticalLabelsHeightPercentage = DEFAULT_X_LABELS_HEIGHT_PERCENTAGE,
+      yAxisPosition = 'left',
+      width
     } = config;
 
     const {
@@ -216,7 +219,10 @@ class AbstractChart<
       }
 
       const basePosition = height * verticalLabelsHeightPercentage;
-      const x = paddingRight - yLabelsOffset;
+       const x =
+        yAxisPosition === 'left'
+          ? paddingRight - yLabelsOffset
+          : width - (yLabelsOffset - 10);
       const y =
         count === 1 && this.props.fromZero
           ? paddingTop + 4
