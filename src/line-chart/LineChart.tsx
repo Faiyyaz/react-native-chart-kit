@@ -214,6 +214,10 @@ export interface LineChartProps extends AbstractChartProps {
    * The number of horizontal lines
    */
   segments?: number;
+  /**
+   * The position of y axis
+   */
+  yAxisPosition?: 'left' | 'right';
 }
 
 type LineChartState = {
@@ -815,7 +819,8 @@ class LineChart extends AbstractChart<LineChartProps, LineChartState> {
       formatXLabel = xLabel => xLabel,
       segments,
       transparent = false,
-      chartConfig
+      chartConfig,
+      yAxisPosition,
     } = this.props;
 
     const { scrollableDotHorizontalOffset } = this.state;
@@ -893,7 +898,8 @@ class LineChart extends AbstractChart<LineChartProps, LineChartState> {
                   paddingTop: paddingTop as number,
                   paddingRight: paddingRight as number,
                   formatYLabel,
-                  decimalPlaces: chartConfig.decimalPlaces
+                  decimalPlaces: chartConfig.decimalPlaces.
+                  yAxisPosition: yAxisPosition,  
                 })}
             </G>
             <G>
