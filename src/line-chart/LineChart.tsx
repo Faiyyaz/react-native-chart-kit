@@ -898,7 +898,7 @@ class LineChart extends AbstractChart<LineChartProps, LineChartState> {
                   paddingTop: paddingTop as number,
                   paddingRight: paddingRight as number,
                   formatYLabel,
-                  decimalPlaces: chartConfig.decimalPlaces.
+                  decimalPlaces: chartConfig.decimalPlaces,
                   yAxisPosition: yAxisPosition,  
                 })}
             </G>
